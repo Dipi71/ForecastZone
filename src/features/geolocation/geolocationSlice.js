@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  geolocation: { lat: 54.687157, lng: 25.279652 },
+  geolocation: { lat: 54.687157, lng: 25.279652 }, // Default location
 };
 
 const geolocationSlice = createSlice({
@@ -9,10 +9,10 @@ const geolocationSlice = createSlice({
   initialState,
   reducers: {
     saveGeoCode: (state, action) => {
-      return { ...state, geolocation: action.payload };
+      state.geolocation = action.payload;
     },
   },
 });
 
 export const { saveGeoCode } = geolocationSlice.actions;
-export default geolocationSlice;
+export default geolocationSlice.reducer;

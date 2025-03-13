@@ -1,6 +1,5 @@
-import { useGetCurrentWeatherQuery } from "../../services/WeatherAPI";
+import { useGetCurrentWeatherQuery } from "../../services/WeatherApi";
 import { saveGeoCode } from "../../features/geolocation/geolocationSlice";
-
 import { useDispatch } from "react-redux";
 import City from "./City";
 import { saveLocation } from "../../features/search/searchSlice";
@@ -15,9 +14,9 @@ function OtherCities() {
       geolocation: { lat: "40.7128", lng: "-74.0060" },
     },
     {
-      city: "London",
-      country: "United Kingdom",
-      geolocation: { lat: "51.5074", lng: "-0.1278" },
+      city: "Mumbai",
+      country: "India",
+      geolocation: { lat: "19.0760", lng: "72.8777" },
     },
     {
       city: "Tokyo",
@@ -25,9 +24,9 @@ function OtherCities() {
       geolocation: { lat: "35.6895", lng: "139.6917" },
     },
     {
-      city: "Paris",
-      country: "France",
-      geolocation: { lat: "48.8566", lng: "2.3522" },
+      city: "Moscow",
+      country: "Russia",
+      geolocation: { lat: "55.7558", lng: "37.6173" },
     },
   ];
 
@@ -40,17 +39,17 @@ function OtherCities() {
   });
 
   const handleClick = (item) => {
-    // Save geolocation to redux store
+    if (!item.isSuccess || !item.data?.coord) return;
+
     dispatch(
       saveGeoCode({
         lat: item.data.coord.lat,
         lng: item.data.coord.lon,
       })
     );
-    // save location to redux store
+
     dispatch(saveLocation(item.data.name, item.data.sys.country));
 
-    // scroll to top of page
     window.scrollTo(0, 0);
   };
 

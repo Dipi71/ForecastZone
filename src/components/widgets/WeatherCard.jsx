@@ -1,46 +1,34 @@
 import { useSelector } from "react-redux";
-import { useGetCurrentWeatherQuery } from "../../services/WeatherAPI";
+import { useGetCurrentWeatherQuery } from "../../services/WeatherApi";
 import WeatherIcon from "../common/WeatherIcon";
 import { TiLocationArrow } from "react-icons/ti";
+import { useMemo } from "react";
 
 function WeatherCard() {
   const { lat, lng } = useSelector((state) => state.geolocation.geolocation);
-  const { data, isSuccess } = useGetCurrentWeatherQuery({
-    lat,
-    lng,
-  });
+  const { data, isSuccess, isError } = useGetCurrentWeatherQuery({ lat, lng });
 
-  function convertToDate(timezone, dt) {
-    let utc_time = new Date(dt * 1000);
-    let local_time = new Date(utc_time.getTime() + timezone * 1000);
-    let local_time_Day = local_time.toLocaleString("en-us", {
-      timeZone: "UTC",
-      weekday: "long",
-    });
-    return local_time_Day;
-  }
+  const convertToDate = useMemo(
+    () => (timezone, dt) =>
+      new Date(dt * 1000).toLocaleString("en-US", {
+        timeZone: "UTC",
+        weekday: "long",
+      }),
+    []
+  );
 
-  function convertToHMin(dt) {
-    let time = new Date(dt * 1000).toLocaleTimeString("en-US", {
-      timeZone: "UTC",
-      hour12: true,
-      hour: "numeric",
-      minute: "numeric",
-    });
-    return time;
-  }
+  const getLocalTime = useMemo(
+    () => (timezone, dt) =>
+      new Date(dt * 1000).toLocaleTimeString("en-US", {
+        timeZone: "UTC",
+        hour12: true,
+        hour: "numeric",
+        minute: "numeric",
+      }),
+    []
+  );
 
-  function getLocalTime(timezone, dt) {
-    let utc_time = new Date(dt * 1000);
-    let local_time = new Date(utc_time.getTime() + timezone * 1000);
-    let local_time_format = local_time.toLocaleTimeString("en-US", {
-      timeZone: "UTC",
-      hour12: true,
-      hour: "numeric",
-      minute: "numeric",
-    });
-    return local_time_format;
-  }
+  if (isError) return <div className="text-red-500">Failed to load weather data.</div>;
 
   return (
     <>
@@ -59,7 +47,6 @@ function WeatherCard() {
                 {getLocalTime(item.timezone, item.dt)}
               </div>
             </div>
-            {/*  */}
 
             <div className="flex items-center justify-between">
               <div>
@@ -80,14 +67,9 @@ function WeatherCard() {
                 />
               </div>
             </div>
+
             {/* PARAMETERS */}
             <div className="mt-8 flex flex-row justify-between">
-              {/* <div>{item.weather[0].description}</div>
-                <div className="flex flex-row gap-1">
-                  <div>H:{Math.round(item.main.temp_max)}&deg;</div>
-                  <div>L:{Math.round(item.main.temp_min)}</div>
-                </div> */}
-
               <div className="flex flex-col gap-1">
                 <div className="flex flex-row gap-1">
                   <div>Real Feel</div>
@@ -101,7 +83,6 @@ function WeatherCard() {
                     {Math.round(item.wind.speed)} m/s
                   </div>
                 </div>
-
                 <div className="flex flex-row gap-1">
                   <div>Humidity</div>
                   <div className="font-KardustBold">{item.main.humidity}%</div>
@@ -129,4 +110,5 @@ function WeatherCard() {
     </>
   );
 }
+
 export default WeatherCard;

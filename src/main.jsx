@@ -13,22 +13,22 @@ const router = createBrowserRouter([
   {
     path: "/weather-app-vite",
     element: (
-      <Suspense fallback={<div className="hidden">Loading...</div>}>
+      <Suspense fallback={<div className="flex justify-center p-10">Loading...</div>}>
         <App />
       </Suspense>
     ),
-
     children: [
       { index: true, element: <Home /> },
-      {
-        path: "forecast",
-        element: <Forecast />,
-      },
+      { path: "forecast", element: <Forecast /> },
     ],
   },
   {
     path: "*",
-    element: <div>Not Found</div>,
+    element: (
+      <div className="flex h-screen items-center justify-center text-xl font-semibold">
+        Page Not Found
+      </div>
+    ),
   },
 ]);
 

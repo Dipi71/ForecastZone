@@ -7,26 +7,30 @@ function Header() {
   return (
     <>
       <nav className="my-4 flex items-center justify-between gap-4 pr-6">
-        <div className="invisible md:visible">
+        <div className="hidden md:block">
           <Location />
         </div>
         <SearchBar />
         <ThemeSwitchToggle />
       </nav>
+
       <div className="flex gap-2 py-4 px-6 text-lg font-semibold sm:px-0">
-        <Link to="/weather-app-vite/">
-          <button className="rounded-lg py-2 px-4 hover:bg-neutral-200 hover:dark:bg-neutral-800">
-            Today
-          </button>
+        <Link
+          to="/weather-app-vite/"
+          className="rounded-lg p-3 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+        >
+          Today
         </Link>
 
-        <Link to="forecast">
-          <button className="rounded-lg py-2 px-4 hover:bg-neutral-200 hover:dark:bg-neutral-800">
-            Next 10 days
-          </button>
+        <Link
+          to="forecast"
+          className="rounded-lg p-3 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+        >
+          Next 10 days
         </Link>
       </div>
     </>
   );
 }
+
 export default Header;

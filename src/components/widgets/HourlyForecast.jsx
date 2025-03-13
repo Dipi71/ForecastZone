@@ -1,14 +1,11 @@
 import { useSelector } from "react-redux";
 import { BiTime } from "react-icons/bi";
 import WeatherIcon from "../common/WeatherIcon";
-import { useGetHourlyForecastQuery } from "../../services/WeatherAPI";
+import { useGetHourlyForecastQuery } from "../../services/WeatherApi"; // ✅ Corrected import
 
 function HourlyForecast() {
   const { lat, lng } = useSelector((state) => state.geolocation.geolocation);
-  const { data, isSuccess } = useGetHourlyForecastQuery({
-    lat,
-    lng,
-  });
+  const { data, isSuccess } = useGetHourlyForecastQuery({ lat, lng });
 
   function convertToHour(dt, timezone) {
     let utc_time = new Date(dt * 1000);
@@ -35,8 +32,6 @@ function HourlyForecast() {
           </div>
 
           <div className="mt-2 flex h-full flex-row justify-items-center gap-4 ">
-            {/* NOW */}
-
             {/* Hourly */}
             {data.list.slice(0, 12).map((list, i) => (
               <div key={i} className="flex flex-col justify-center text-center">
@@ -47,7 +42,6 @@ function HourlyForecast() {
                   <WeatherIcon
                     iconType={list.weather[0].icon}
                     id={list.weather[0].id}
-                    // size={36}
                   />
                 </div>
                 <div className="text-md p-1 font-semibold md:text-sm">

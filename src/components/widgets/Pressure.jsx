@@ -1,27 +1,20 @@
 import { useSelector } from "react-redux";
 import { WiBarometer } from "react-icons/wi";
-import { useGetCurrentWeatherQuery } from "../../services/WeatherAPI";
+import { useGetCurrentWeatherQuery } from "../../services/WeatherApi";
 
 function Pressure() {
-  //   Access to RTX Query cashed data
+  // Access to RTK Query cached data
   const { lat, lng } = useSelector((state) => state.geolocation.geolocation);
-  const { data, isSuccess } = useGetCurrentWeatherQuery({
-    lat,
-    lng,
-  });
+  const { data, isSuccess } = useGetCurrentWeatherQuery({ lat, lng });
 
   function getPressureMessage(pressure) {
-    switch (true) {
-      case pressure <= 1000:
-        return "Low pressure";
-      case pressure <= 1013:
-        return "Normal pressure";
-      case pressure <= 1020:
-        return "High pressure";
-      default:
-        return "Very high pressure";
-    }
+    if (pressure <= 1000) return "Low pressure";
+    if (pressure <= 1013) return "Normal pressure";
+    if (pressure <= 1020) return "High pressure";
+    return "Very high pressure";
   }
+
+  const pressure = data?.main?.pressure ?? "N/A"; // Fallback for safety
 
   return (
     <>
@@ -32,14 +25,11 @@ function Pressure() {
             <WiBarometer className="h-5 w-5" />
             <div className="text-xs font-semibold">PRESSURE</div>
           </div>
+          {/* CONTENT */}
           <div className="mt-2 h-full">
-            <div className="text-2xl font-semibold">
-              {data.main.pressure} hPa
-            </div>
+            <div className="text-2xl font-semibold">{pressure} hPa</div>
           </div>
-          <div className="text-xs">
-            {getPressureMessage(data.main.pressure)}
-          </div>
+          <div className="text-xs">{getPressureMessage(pressure)}</div>
         </div>
       )}
     </>

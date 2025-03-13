@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
 import { IoWaterSharp } from "react-icons/io5";
-import { useGetCurrentWeatherQuery } from "../../services/WeatherAPI";
+import { useGetCurrentWeatherQuery } from "../../services/WeatherApi";
 
 function Precipitation() {
-  //   Access to RTX Query cashed data
+  // Access to RTK Query cached data
   const { lat, lng } = useSelector((state) => state.geolocation.geolocation);
-  const { data, isSuccess } = useGetCurrentWeatherQuery({
-    lat,
-    lng,
-  });
+  const { data, isSuccess } = useGetCurrentWeatherQuery({ lat, lng });
+
+  // Get precipitation data safely
+  const precipitation = data?.rain?.["3h"] || data?.snow?.["3h"] || 0;
 
   return (
     <>
@@ -21,10 +21,8 @@ function Precipitation() {
           </div>
           {/* CONTENT */}
           <div className="mt-3 h-full">
-            <div className="text-2xl font-semibold">
-              {data.rain ? data.rain["3h"] : data.snow ? data.snow["3h"] : 0} mm
-            </div>
-            <div className="font-semibold">in last 3 hours</div>
+            <div className="text-2xl font-semibold">{precipitation} mm</div>
+            <div className="font-semibold">in the last 3 hours</div>
           </div>
         </div>
       )}
