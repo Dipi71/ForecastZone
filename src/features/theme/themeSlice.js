@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Example of a theme switcher slice, but it is not used in the app
 const initialState = {
-  darkMode: false,
+  darkMode: localStorage.getItem("theme") === "dark",
 };
 
 const darkModeSlice = createSlice({
@@ -11,6 +10,7 @@ const darkModeSlice = createSlice({
   reducers: {
     toggleDarkMode: (state) => {
       state.darkMode = !state.darkMode;
+      localStorage.setItem("theme", state.darkMode ? "dark" : "light");
     },
   },
 });

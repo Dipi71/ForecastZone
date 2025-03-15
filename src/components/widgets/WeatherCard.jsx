@@ -9,7 +9,7 @@ function WeatherCard() {
   const { data, isSuccess, isError } = useGetCurrentWeatherQuery({ lat, lng });
 
   const convertToDate = useMemo(
-    () => (timezone, dt) =>
+    () => (dt) =>
       new Date(dt * 1000).toLocaleString("en-US", {
         timeZone: "UTC",
         weekday: "long",
@@ -17,16 +17,15 @@ function WeatherCard() {
     []
   );
 
-  const getLocalTime = useMemo(
-    () => (timezone, dt) =>
-      new Date(dt * 1000).toLocaleTimeString("en-US", {
-        timeZone: "UTC",
-        hour12: true,
-        hour: "numeric",
-        minute: "numeric",
-      }),
-    []
-  );
+  const getLocalTime = (timezone, timestamp) => {
+    if (!timestamp || timezone === undefined) return "N/A"; // Prevent Invalid Date error
+    return new Date((timestamp + timezone) * 1000).toLocaleString("en-US", {
+      timeZone: "UTC",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
 
   if (isError) return <div className="text-red-500">Failed to load weather data.</div>;
 
@@ -41,7 +40,7 @@ function WeatherCard() {
             {/* DAY AND TIME */}
             <div className="flex flex-row justify-between">
               <div className="text-xl font-semibold">
-                {convertToDate(item.timezone, item.dt)}
+                {convertToDate(item.dt)}
               </div>
               <div className="font-KardustBold text-xl">
                 {getLocalTime(item.timezone, item.dt)}

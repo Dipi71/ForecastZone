@@ -4,34 +4,27 @@ import { useState, useEffect } from "react";
 function ThemeSwitchToggle() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  // Set the theme
   useEffect(() => {
     document.documentElement.className = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Toggle the theme
   const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
-    <>
-      <button
-        className="flex items-center justify-center rounded-md p-2 hover:bg-neutral-50 dark:hover:bg-neutral-800"
-        onClick={toggleTheme}
-      >
-        {theme === "light" ? (
-          <BsMoonStars className="text-xl text-gray-800" />
-        ) : (
-          <BsSun className="text-xl text-yellow-300" />
-        )}
-      </button>
-    </>
+    <button
+      className="flex items-center justify-center rounded-md p-2 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition"
+      onClick={toggleTheme}
+    >
+      {theme === "light" ? (
+        <BsMoonStars className="text-xl text-gray-800" />
+      ) : (
+        <BsSun className="text-xl text-yellow-300" />
+      )}
+    </button>
   );
 }
+
 export default ThemeSwitchToggle;

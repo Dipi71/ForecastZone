@@ -36,3 +36,36 @@ input[type="range"]::-ms-thumb {
   border-radius: 100%;
   background: #ffffff;
 }
+
+/* Light Theme Improvements */
+.light {
+  --bg-primary: #e5e5e5; /* Soft silver-gray background */
+  --text-primary: #1a1a1a; /* Darker text for readability */
+  --card-bg: #d9d9d9; /* Light gray card background */
+  --card-border: rgba(0, 0, 0, 0.2); /* Slightly darker border */
+  --card-shadow: rgba(0, 0, 0, 0.25); /* More visible shadow */
+}
+
+/* Apply styles to cards */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 12px var(--card-shadow); /* Stronger shadow for depth */
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+
+/* Apply theme variables */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0px 4px 12px var(--card-shadow);
+  padding: 1rem;
+  border-radius: 8px;
+}
