@@ -37,35 +37,32 @@ input[type="range"]::-ms-thumb {
   background: #ffffff;
 }
 
-/* Light Theme Improvements */
+/* Light Theme - Unique Soft Look */
 .light {
-  --bg-primary: #e5e5e5; /* Soft silver-gray background */
-  --text-primary: #1a1a1a; /* Darker text for readability */
-  --card-bg: #d9d9d9; /* Light gray card background */
-  --card-border: rgba(0, 0, 0, 0.2); /* Slightly darker border */
-  --card-shadow: rgba(0, 0, 0, 0.25); /* More visible shadow */
+  --bg-primary: linear-gradient(to bottom right, #f8f4e3, #e3e4fa); /* Soft Beige to Lavender */
+  --text-primary: #1a1a1a;
+  --card-bg: rgba(255, 255, 255, 0.5); /* Frosted Glass Effect */
+  --card-border: rgba(255, 255, 255, 0.2);
+  --card-shadow: rgba(0, 0, 0, 0.15);
 }
 
 /* Apply styles to cards */
 .card {
-  background-color: var(--card-bg);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px); /* Frosted effect */
   border: 1px solid var(--card-border);
-  box-shadow: 0 4px 12px var(--card-shadow); /* Stronger shadow for depth */
-  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  border-radius: 12px;
   padding: 1rem;
+  transition: transform 0.2s ease-in-out;
 }
 
+.card:hover {
+  transform: scale(1.05);
+}
 
 /* Apply theme variables */
 body {
-  background-color: var(--bg-primary);
+  background: var(--bg-primary);
   color: var(--text-primary);
-}
-
-.card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--card-border);
-  box-shadow: 0px 4px 12px var(--card-shadow);
-  padding: 1rem;
-  border-radius: 8px;
 }

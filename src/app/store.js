@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import searchSlice from "../features/search/searchSlice";
-import geolocationReducer from "../features/geolocation/geolocationSlice"; // Correct import
+import geolocationReducer from "../features/geolocation/geolocationSlice"; 
 import { weatherApi } from "../services/WeatherApi";
 import darkModeSlice from "../features/theme/themeSlice";
 
 export const store = configureStore({
   reducer: {
     search: searchSlice.reducer,
-    geolocation: geolocationReducer, // Use the corrected reducer
+    geolocation: geolocationReducer, 
     darkMode: darkModeSlice.reducer,
     [weatherApi.reducerPath]: weatherApi.reducer,
   },

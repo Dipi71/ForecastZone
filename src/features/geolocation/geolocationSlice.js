@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  geolocation: { lat: 54.687157, lng: 25.279652 }, // Default location
+  geolocation: { lat: 19.0760, lng: 72.8777 }, // Set Mumbai as default location
 };
 
 const geolocationSlice = createSlice({
@@ -16,3 +16,4 @@ const geolocationSlice = createSlice({
 
 export const { saveGeoCode } = geolocationSlice.actions;
 export default geolocationSlice.reducer;
+

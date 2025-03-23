@@ -7,10 +7,12 @@ function Header() {
   return (
     <>
       <nav className="my-4 flex items-center justify-between gap-4 pr-6">
-        <div className="hidden md:block">
+        <div className="hidden md:block max-w-[50%] truncate">
           <Location />
         </div>
-        <SearchBar />
+        <div className="flex-1">
+          <SearchBar />
+        </div>
         <ThemeSwitchToggle />
       </nav>
 

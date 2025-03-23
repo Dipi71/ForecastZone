@@ -14,7 +14,23 @@ export const weatherApi = createApi({
     }),
     getForecastDaily: builder.query({
       query: ({ lat, lng }) =>
-        `data/2.5/forecast?lat=${lat}&lon=${lng}&cnt=16&units=metric&appid=${APIKey}`, // ✅ Fixed
+        `data/2.5/forecast?lat=${lat}&lon=${lng}&units=metric&appid=${APIKey}`,
+      transformResponse: (response) => {
+        if (!response || !response.list) {
+          console.error("Invalid forecast response:", response);
+          return [];
+        }
+
+        const dailyForecast = {};
+        response.list.forEach((forecast) => {
+          const date = forecast.dt_txt.split(" ")[0]; // Extract date
+          if (!dailyForecast[date] || forecast.dt_txt.includes("12:00:00")) {
+            dailyForecast[date] = forecast;
+          }
+        });
+
+        return Object.values(dailyForecast).slice(0, 5); // Return only 5 days
+      },
     }),
     getCurrentAirPollution: builder.query({
       query: ({ lat, lng }) =>
