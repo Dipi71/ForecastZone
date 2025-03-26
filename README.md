@@ -1,65 +1,53 @@
-# Weather App ✨
+# 🌦️ Weather App  
 
-This is a simple weather application built with React and Vite. It allows users to search for a city and get the current weather conditions for that location.
+A sleek and modern weather application built with **React** and **Vite**, providing real-time weather updates and forecasts for any location.  
 
-<img width="1702" alt="Screenshot-dark-mode" src="https://user-images.githubusercontent.com/64962012/223087582-f94a7e11-6dfa-47ec-a272-a78fc857fbe1.png">
+## ✨ Features  
 
-[**View demo**](https://dariuslukasukas.github.io/weather-app-vite/) 
+- 🌍 **Search by City or ZIP Code** – Get weather data for any location worldwide.  
+- 📊 **Current Weather Conditions** – View temperature, humidity, wind speed, and more.  
+- 📅 **10-Day Weather Forecast** – Plan ahead with an extended weather outlook.  
+- 🗺️ **Interactive Map** – Explore the location visually using **Leaflet** maps.  
+- 🌧️ **Precipitation Probability Chart** – Stay updated on rain chances with **Chart.js**. 
+- **Dark & Light Mode Support** – The app automatically adjusts to the user's theme preference for a better visual experience. 
 
-## Features
+## 🔧 Technologies & Dependencies  
 
-* Search for weather information by city name or ZIP code
-* View current weather information, including temperature, humidity, wind speed, and more
-* View a 10-day forecast for the selected location
-* View a map of the selected location using Leaflet
-* View chart of probability of precipitation over the next 6 hours using Chart.js
+### Front-end Stack  
+- **React** – Component-based UI library  
+- **Vite** – Fast build tool  
+- **Tailwind CSS** – Utility-first CSS framework  
+- **React Router** – Client-side routing  
+- **Redux Toolkit** – State management  
+- **Axios** – API requests  
+- **Chart.js** – Data visualization  
+- **Leaflet** – Interactive maps  
 
-## Dependencies
+### APIs Used  
+- **OpenWeather API** – Fetch real-time weather data  
+- **Google Places API** – Autocomplete location search  
+- **Stadia Maps API** – Styled map layers  
 
-This project uses the following dependencies:
+## 🚀 Installation & Setup  
 
-### Front-end 🎨
-* tailwind CSS - A utility-first CSS framework packed with classes.
-* headlessui/react - A set of completely unstyled, fully accessible UI components for React.
-* react-redux - A package that provides bindings for React to use Redux.
-* reduxjs/toolkit - A package that provides utilities to simplify common Redux use cases, including store setup, creating reducers and actions, and creating middleware.
-* react-router-dom - A package that provides DOM bindings for React Router.
-* axios - A Promise-based HTTP client for the browser.
-* chart.js - A simple yet flexible JavaScript charting library that allows you to create a wide range of chart types.
-* classnames - A JavaScript utility for conditionally joining classNames together.
-* react-icons - A set of free icons for React projects.
-* heroicons/react - A set of free icons for React projects.
-* use-places-autocomplete - A React hook for implementing Google Places Autocomplete in application.
-* leaflet - A JavaScript library for mobile-friendly interactive maps.
+To run this project locally, ensure you have **Node.js** installed, then follow these steps:  
 
-### Back-end ⚒️
-* Github Pages
+```sh
+# Clone the repository
+git clone your-repo-link-here
+cd weather-app
 
-### APIs Used
+# Install dependencies
+npm install
 
-This project uses the following APIs:
+# Start the development server
+npm run dev
 
-* Google Places API - used to search for locations and autocomplete
-* OpenWeather API - used to retrieve weather data and map layer for a given location
-* OpenMeteo API - used to retrieve UV Index data for a given location
-* Stadia Maps API - used to style map tiles.
-
-## Installation
-
-To run this application locally, you'll need to have Node.js and npm installed on your machine. Once you've cloned this repository, navigate to the project directory and run the following commands:
-
-* npm install
-* npm run dev
-
-This will install the necessary dependencies and start a local development server.
 
 ## Usage
 
 To use this application, simply enter the name of a city in the search bar and press the "Enter" key. The current weather conditions for that city will be displayed.
 
-## Contributing
-
-If you'd like to contribute to this project, please open an issue or submit a pull request. Contributions are always welcome!
 
 ## License
 
